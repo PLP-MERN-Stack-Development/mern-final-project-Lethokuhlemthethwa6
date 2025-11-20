@@ -1,52 +1,81 @@
-# MERN Stack Capstone Project
+﻿# MERN Social Media Application / Week 8 Assignment
 
-This assignment focuses on designing, developing, and deploying a comprehensive full-stack MERN application that showcases all the skills you've learned throughout the course.
+A full-stack social media application built with MongoDB, Express.js, React, and Node.js. This repository contains the Week 8 assignment submission and a working MERN social media app example with user authentication, posts, comments, and a responsive UI built with Tailwind CSS.
 
-## Assignment Overview
+## Highlights
 
-You will:
-1. Plan and design a full-stack MERN application
-2. Develop a robust backend with MongoDB, Express.js, and Node.js
-3. Create an interactive frontend with React.js
-4. Implement testing across the entire application
-5. Deploy the application to production
+- User registration and login using JWT
+- Create and fetch posts
+- Real-time comments via Socket.io
+- Protected routes and JWT-based authorization
+- Vite + React frontend, Node/Express backend, MongoDB
 
-## Getting Started
+## Quick Start
 
-1. Accept the GitHub Classroom assignment
-2. Clone the repository to your local machine
-3. Follow the instructions in the `Week8-Assignment.md` file
-4. Plan, develop, and deploy your capstone project
-
-## Files Included
-
-- `Week8-Assignment.md`: Detailed assignment instructions
-
-## Requirements
-
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
+Prerequisites:
+- Node.js (v14+ recommended)
+- MongoDB (local or Atlas)
 - npm or yarn
-- Git and GitHub account
-- Accounts on deployment platforms (Render/Vercel/Netlify/etc.)
 
-## Project Ideas
+1) Install backend dependencies and create `.env` in `backend/`:
 
-The `Week8-Assignment.md` file includes several project ideas, but you're encouraged to develop your own idea that demonstrates your skills and interests.
+```powershell
+cd backend
+npm install
+# create a .env file with MONGO_URI and JWT_SECRET
+```
 
-## Submission
+2) Install frontend dependencies and run dev server:
 
-Your project will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+```powershell
+cd frontend
+npm install
+npm run dev
+```
 
-1. Commit and push your code regularly
-2. Include comprehensive documentation
-3. Deploy your application and add the live URL to your README.md
-4. Create a video demonstration and include the link in your README.md
+3) Start backend (from `backend/`):
 
-## Resources
+```powershell
+node server.js
+```
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Express.js Documentation](https://expressjs.com/)
-- [React Documentation](https://react.dev/)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
-- [GitHub Classroom Guide](https://docs.github.com/en/education/manage-coursework-with-github-classroom) 
+The frontend default port is `5173`; backend default is `5000`.
+
+## Project Structure
+
+Top-level layout:
+
+```
+ backend/
+    models/
+    routes/
+    middleware/
+    server.js
+ frontend/
+    src/
+    package.json
+ README.md
+```
+
+## API Endpoints (examples)
+
+- `POST /api/users/register`  Register a user
+- `POST /api/users/login`  Login
+- `GET /api/posts`  Get all posts
+- `POST /api/posts`  Create a post (protected)
+
+## Troubleshooting
+
+- If the backend cannot connect to MongoDB, verify `MONGO_URI` in `backend/.env`.
+- If the frontend cannot reach the API, confirm backend is running and CORS is configured.
+
+## Submission Notes (Week 8)
+
+This repository contains the Week 8 assignment deliverables. Please confirm the code, documentation, and deployed URL (if any) are included before final submission.
+
+## License
+
+MIT
+
+---
+Updated to resolve merge conflict between local assignment README and remote repository README.
