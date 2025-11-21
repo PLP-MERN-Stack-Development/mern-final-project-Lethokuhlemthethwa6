@@ -17,7 +17,8 @@ const HomePage = () => {
   const { activeView } = useUIStore();
 
   useEffect(() => {
-    const socketConnection = io('http://localhost:5000');
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const socketConnection = io(API_URL);
     setSocket(socketConnection);
 
     socketConnection.on('commentAdded', ({ postId, comment }) => {
@@ -42,7 +43,8 @@ const HomePage = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/posts');
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await axios.get(`${API_URL}/api/posts`);
       setPosts(response.data);
       setError('');
     } catch (err) {

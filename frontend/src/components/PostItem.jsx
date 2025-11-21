@@ -24,7 +24,7 @@ const PostItem = ({ post, onCommentAdded, socket }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/posts/${post._id}/comments`,
+        `${(import.meta.env.VITE_API_URL || 'http://localhost:5000')}/api/posts/${post._id}/comments`,
         { content: commentContent },
         {
           headers: {
