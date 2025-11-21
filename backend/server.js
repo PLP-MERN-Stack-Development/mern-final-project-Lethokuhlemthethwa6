@@ -30,6 +30,11 @@ if (!process.env.MONGO_URI) {
   process.exit(1);
 }
 
+// Warn if JWT_SECRET is not set (do not exit, but warn for production)
+if (!process.env.JWT_SECRET) {
+  console.warn('WARNING: JWT_SECRET is not set. Using a missing JWT secret is insecure for production. Set `JWT_SECRET` in environment variables.');
+}
+
 const startServer = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
