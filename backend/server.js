@@ -23,9 +23,25 @@ const io = socketIo(server, {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+// Ensure MONGO_URI is provided
+if (!process.env.MONGO_URI) {
+  console.error('FATAL: MONGO_URI is not set. Set the MongoDB connection string in environment variables.');
+  console.error('On Render: go to your service -> Environment -> Add `MONGO_URI`');
+  process.exit(1);
+}
+
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('MongoDB connection error:', err.message || err);
+    process.exit(1);
+  }
+
+  const PORT = process.env.PORT || 5000;
+  server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+};
 
 const userRouter = require('./routes/userRoutes');
 const postRouter = require('./routes/postRoutes');
