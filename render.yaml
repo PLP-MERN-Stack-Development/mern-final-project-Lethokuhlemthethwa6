@@ -1,0 +1,23 @@
+# Render service manifest for backend
+# NOTE: This file intentionally DOES NOT include secret values. Add secrets in
+# the Render dashboard after creating the service (MONGO_URI, JWT_SECRET).
+
+services:
+  - name: socialverse-api
+    type: web
+    env: node
+    repo: https://github.com/PLP-MERN-Stack-Development/mern-final-project-Lethokuhlemthethwa6
+    branch: main
+    root: backend
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    # Environment variable placeholders — set these in Render dashboard
+    envVars:
+      - key: MONGO_URI
+        value: "<SET_IN_RENDER_DASHBOARD>"
+      - key: JWT_SECRET
+        value: "<SET_IN_RENDER_DASHBOARD>"
+      - key: FRONTEND_URL
+        value: "<OPTIONAL_FRONTEND_URL>"
